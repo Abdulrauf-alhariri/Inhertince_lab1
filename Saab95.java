@@ -41,4 +41,6 @@ public class Saab95 extends Car{
     public void brake(double amount){
         decrementSpeed(amount);
     }
+
+
 }
