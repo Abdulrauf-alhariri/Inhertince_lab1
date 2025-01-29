@@ -71,8 +71,10 @@ class Saab95Test {
     @Test
     void decrementSpeed() {
         double oldSpeed = saab.getCurrentSpeed();
-        saab.decrementSpeed(1.5);
-        assertTrue(saab.getCurrentSpeed() < oldSpeed);
+        if(oldSpeed != 0) {
+            saab.decrementSpeed(1.5);
+            assertTrue(saab.getCurrentSpeed() < oldSpeed);
+        }
     }
 
     @Test

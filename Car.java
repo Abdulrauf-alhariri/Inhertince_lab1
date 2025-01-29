@@ -3,11 +3,11 @@ import java.awt.geom.Point2D;
 import java.util.Objects;
 
 public abstract class Car implements Movable {
-    protected int nrDoors; // Number of doors on the car
-    protected double enginePower; // Engine power of the car
+    private int nrDoors; // Number of doors on the car
+    private double enginePower; // Engine power of the car
     protected double currentSpeed; // The current speed of the car
-    protected Color color; // Color of the car
-    protected String modelName; // The car model name
+    private Color color; // Color of the car
+    private String modelName; // The car model name
     protected Point2D.Double xAndY;
     private Direction direction;
 
@@ -47,6 +47,24 @@ public abstract class Car implements Movable {
 
     public void stopEngine(){
         currentSpeed = 0;
+    }
+
+    public void gas(double amount){
+        if(amount > 1) {
+            amount = 1;
+        } else if (amount < 0) {
+            amount = 0;
+        }
+        incrementSpeed(amount);
+    }
+
+    public void brake(double amount){
+        if(amount > 1) {
+            amount = 1;
+        } else if (amount < 0) {
+            amount = 0;
+        }
+        decrementSpeed(amount);
     }
 
     abstract void incrementSpeed(double amount);
