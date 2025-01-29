@@ -8,7 +8,7 @@ public abstract class Car implements Movable {
     protected double currentSpeed; // The current speed of the car
     protected Color color; // Color of the car
     protected String modelName; // The car model name
-    private final Point2D.Double xAndY;
+    protected Point2D.Double xAndY;
     private Direction direction;
 
     public Car(int nrDoors, Color color, double enginePower, String modelName) {
@@ -17,6 +17,7 @@ public abstract class Car implements Movable {
         this.enginePower = enginePower;
         this.modelName = modelName;
         this.xAndY = new Point2D.Double(0,0);
+        this.direction = Direction.NORTH;
     }
 
     public int getNrDoors(){
@@ -33,6 +34,8 @@ public abstract class Car implements Movable {
     public Color getColor(){
         return color;
     }
+
+    public Direction getDirection() {return direction;}
 
     public void setColor(Color clr){
         color = clr;
