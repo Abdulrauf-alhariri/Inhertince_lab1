@@ -3,6 +3,7 @@ import java.awt.*;
 public class Saab95 extends Car{
 
     private boolean turboOn;
+    private double speed;
     
     public Saab95(){
         super(2,Color.red, 125, "Saab95");
@@ -27,22 +28,25 @@ public class Saab95 extends Car{
     public void incrementSpeed(double amount){
         double attemptedSpeed = getCurrentSpeed() + speedFactor() * amount;
         if( attemptedSpeed > getEnginePower()) {
-            currentSpeed = getEnginePower();
+            speed = getEnginePower();
         } else if (attemptedSpeed < 0){
-            currentSpeed = 0;
+            speed = 0;
         }else{
-            currentSpeed = getCurrentSpeed() + speedFactor() * amount;};
+            speed = getCurrentSpeed() + speedFactor() * amount;};
+
+        setCurrentSpeed(speed);
     }
 
     public void decrementSpeed(double amount){
-        double attemptedSpeed = getCurrentSpeed() + speedFactor() * amount;
+        double attemptedSpeed = getCurrentSpeed() - speedFactor() * amount;
         if( attemptedSpeed > getEnginePower()) {
-            currentSpeed = getEnginePower();
+            speed = getEnginePower();
         } else if (attemptedSpeed < 0){
-            currentSpeed = 0;
+            speed = 0;
         }else{
-            currentSpeed = getCurrentSpeed() + speedFactor() * amount;};
-        currentSpeed = getCurrentSpeed() - speedFactor() * amount;
+            speed = getCurrentSpeed() - speedFactor() * amount;};
+
+        setCurrentSpeed(speed);
     }
 
 

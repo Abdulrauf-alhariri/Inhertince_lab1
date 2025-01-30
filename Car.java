@@ -5,7 +5,7 @@ import java.util.Objects;
 public abstract class Car implements Movable {
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
-    protected double currentSpeed; // The current speed of the car
+    private double currentSpeed; // The current speed of the car
     private Color color; // Color of the car
     private String modelName; // The car model name
     protected Point2D.Double xAndY;
@@ -26,6 +26,8 @@ public abstract class Car implements Movable {
     public double getEnginePower(){
         return enginePower;
     }
+
+    public void setCurrentSpeed(double speed) {currentSpeed = speed;}
 
     public double getCurrentSpeed(){
         return currentSpeed;
