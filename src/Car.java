@@ -1,6 +1,6 @@
+
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.util.Objects;
 
 public abstract class Car implements Movable {
     private int nrDoors; // Number of doors on the car
@@ -8,7 +8,7 @@ public abstract class Car implements Movable {
     private double currentSpeed; // The current speed of the car
     private Color color; // Color of the car
     private String modelName; // The car model name
-    protected Point2D.Double xAndY;
+    public Point2D.Double xAndY;
     private Direction direction;
 
     public Car(int nrDoors, Color color, double enginePower, String modelName) {

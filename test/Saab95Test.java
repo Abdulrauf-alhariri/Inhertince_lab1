@@ -1,4 +1,7 @@
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 
 import java.awt.*;
 
@@ -9,13 +12,13 @@ class Saab95Test {
     @Test
     void getNrDoors() {
         Saab95 saab = new Saab95();
-        assertEquals(2, saab.getNrDoors());
+        Assertions.assertEquals(2, saab.getNrDoors());
     }
 
     @Test
     void getEnginePower() {
         Saab95 saab = new Saab95();
-        assertEquals(125, saab.getEnginePower());
+        Assertions.assertEquals(125, saab.getEnginePower());
     }
 
     @Test
@@ -23,34 +26,34 @@ class Saab95Test {
         Saab95 saab = new Saab95();
         // Default is 0, when start engine is 0.1
         saab.startEngine();
-        assertEquals(0.1, saab.getCurrentSpeed());
+        Assertions.assertEquals(0.1, saab.getCurrentSpeed());
     }
 
     @Test
     void getColor() {
         Saab95 saab = new Saab95();
-        assertEquals(Color.red, saab.getColor());
+        Assertions.assertEquals(Color.red, saab.getColor());
     }
 
     @Test
     void setColor() {
         Saab95 saab = new Saab95();
         saab.setColor(Color.black);
-        assertEquals(Color.black, saab.getColor());
+        Assertions.assertEquals(Color.black, saab.getColor());
     }
 
     @Test
     void startEngine() {
         Saab95 saab = new Saab95();
         saab.startEngine();
-        assertEquals(0.1, saab.getCurrentSpeed());
+        Assertions.assertEquals(0.1, saab.getCurrentSpeed());
     }
 
     @Test
     void stopEngine() {
         Saab95 saab = new Saab95();
         saab.stopEngine();
-        assertEquals(0, saab.getCurrentSpeed());
+        Assertions.assertEquals(0, saab.getCurrentSpeed());
     }
 
     @Test
@@ -61,7 +64,7 @@ class Saab95Test {
             double oldSpeed = saab.getCurrentSpeed();
             double newSpeed = oldSpeed + saab.speedFactor() * i;
             saab.incrementSpeed(i);
-            assertEquals(newSpeed, saab.getCurrentSpeed());
+            Assertions.assertEquals(newSpeed, saab.getCurrentSpeed());
         }
     }
 
@@ -71,12 +74,12 @@ class Saab95Test {
         // Testing with turbo on
         saab.setTurboOn();
         double engineTurboOn = saab.getEnginePower() * 0.01 * 1.3;
-        assertEquals(engineTurboOn, saab.speedFactor());
+        Assertions.assertEquals(engineTurboOn, saab.speedFactor());
 
         // Testing with turbo off
         saab.setTurboOff();
         double engineTurboOff = saab.getEnginePower() * 0.01 ;
-        assertEquals(engineTurboOff, saab.speedFactor());
+        Assertions.assertEquals(engineTurboOff, saab.speedFactor());
     }
 
     @Test
@@ -93,7 +96,7 @@ class Saab95Test {
         for (double i = 0; i < 10; i+= 0.1) {
             saab.decrementSpeed(i);
         }
-        assertEquals(0, saab.getCurrentSpeed());
+        Assertions.assertEquals(0, saab.getCurrentSpeed());
     }
 
     @Test
@@ -104,14 +107,14 @@ class Saab95Test {
         double oldY = saab.xAndY.y;
         double newY = oldY + saab.getCurrentSpeed();
         saab.move();
-        assertEquals(newY, saab.xAndY.y);
+        Assertions.assertEquals(newY, saab.xAndY.y);
 
         // Change direction to east
         saab.turnRight();
         double oldX = saab.xAndY.x;
         double newX = oldX + saab.getCurrentSpeed();
         saab.move();
-        assertEquals(newX, saab.xAndY.x);
+        Assertions.assertEquals(newX, saab.xAndY.x);
 
     }
 
@@ -122,7 +125,7 @@ class Saab95Test {
         saab.turnLeft();
         saab.turnLeft();
 
-        assertEquals(Direction.SOUTH, saab.getDirection());
+        Assertions.assertEquals(Direction.SOUTH, saab.getDirection());
     }
 
     @Test
@@ -133,7 +136,7 @@ class Saab95Test {
         saab.turnRight();
         saab.turnRight();
 
-        assertEquals(Direction.WEST, saab.getDirection());
+        Assertions.assertEquals(Direction.WEST, saab.getDirection());
     }
 
     @Test
@@ -142,13 +145,13 @@ class Saab95Test {
         Saab95 saab = new Saab95();
         double oldSpeed = saab.getCurrentSpeed() + saab.speedFactor() * 1;
         saab.gas(10);
-        assertEquals(saab.getCurrentSpeed(), oldSpeed);
+        Assertions.assertEquals(saab.getCurrentSpeed(), oldSpeed);
 
         // Here we check if amount < 0, then gas should set amount to 0
         saab.gas(-2);
         oldSpeed = saab.getCurrentSpeed();
         saab.incrementSpeed(0);
-        assertEquals(saab.getCurrentSpeed(), oldSpeed);
+        Assertions.assertEquals(saab.getCurrentSpeed(), oldSpeed);
     }
 
     @Test
@@ -163,13 +166,13 @@ class Saab95Test {
 
         double oldSpeed = saab.getCurrentSpeed() - saab.speedFactor() * 1;
         saab.brake(10);
-        assertEquals(saab.getCurrentSpeed(), oldSpeed);
+        Assertions.assertEquals(saab.getCurrentSpeed(), oldSpeed);
 
         // Here we check if amount < 0, then gas should set amount to 0
         saab.brake(-2);
         oldSpeed = saab.getCurrentSpeed();
         saab.decrementSpeed(0);
-        assertEquals(saab.getCurrentSpeed(), oldSpeed);
+        Assertions.assertEquals(saab.getCurrentSpeed(), oldSpeed);
     }
 }
 
