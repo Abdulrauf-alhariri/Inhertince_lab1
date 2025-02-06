@@ -15,11 +15,10 @@ public class Scania extends Car {
         } else {
             this.angle = newAngle;
         }
-
     }
 
     public void flatBedLower(double amount){
-        double newAngel = this.angle + amount;
+        double newAngel = this.angle - amount;
 
         if (newAngel < 0){
             this.angle = 0;
@@ -53,16 +52,32 @@ public class Scania extends Car {
 
     @Override
     void incrementSpeed(double amount) {
-
+        double attemptedSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower());
+        if( attemptedSpeed > getEnginePower()) {
+            attemptedSpeed = getEnginePower();
+        } else if (attemptedSpeed < 0){
+            attemptedSpeed = 0;
+        }else{
+            attemptedSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower());};
+        setCurrentSpeed(attemptedSpeed);
     }
 
     @Override
     double speedFactor() {
+        if(this.angle == 0) {
+        return getEnginePower() * 0.1; }
         return 0;
     }
 
     @Override
     void decrementSpeed(double amount) {
-
+        double attemptedSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
+        if( attemptedSpeed > getEnginePower()) {
+            attemptedSpeed = getEnginePower();
+        } else if (attemptedSpeed < 0){
+            attemptedSpeed = 0;
+        }else{
+            attemptedSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);};
+        setCurrentSpeed(attemptedSpeed);
     }
 }
