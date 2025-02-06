@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Scania extends Car {
+public class Scania extends Truck {
     private double angle;
     public Scania() {
         super(2,Color.black,300, "Scania");
@@ -34,50 +34,18 @@ public class Scania extends Car {
 
     @Override
     public void move(){
-        Direction direction = getDirection();
-        double currentSpeed = getCurrentSpeed();
         // Car move only if angle is 0
         if (this.angle == 0) {
-            if (direction == Direction.NORTH) {
-                this.xAndY.y += currentSpeed;
-            } else if (direction == Direction.EAST) {
-                this.xAndY.x += currentSpeed;
-            } else if (direction == Direction.SOUTH) {
-                this.xAndY.y -= currentSpeed;
-            } else if (direction == Direction.WEST) {
-                this.xAndY.x -= currentSpeed;
-            }
+            super.move();
+
         }
     }
 
     @Override
-    void incrementSpeed(double amount) {
-        double attemptedSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower());
-        if( attemptedSpeed > getEnginePower()) {
-            attemptedSpeed = getEnginePower();
-        } else if (attemptedSpeed < 0){
-            attemptedSpeed = 0;
-        }else{
-            attemptedSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower());};
-        setCurrentSpeed(attemptedSpeed);
-    }
-
-    @Override
-    double speedFactor() {
+    public double speedFactor() {
         if(this.angle == 0) {
-        return getEnginePower() * 0.1; }
-        return 0;
-    }
+        return super.speedFactor();}
 
-    @Override
-    void decrementSpeed(double amount) {
-        double attemptedSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
-        if( attemptedSpeed > getEnginePower()) {
-            attemptedSpeed = getEnginePower();
-        } else if (attemptedSpeed < 0){
-            attemptedSpeed = 0;
-        }else{
-            attemptedSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);};
-        setCurrentSpeed(attemptedSpeed);
+        return 0;
     }
 }
