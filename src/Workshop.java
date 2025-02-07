@@ -1,6 +1,7 @@
 
+import java.awt.*;
 import java.util.*;
-import static java.awt.*;
+import java.util.List;
 
 public class Workshop <T extends MotorVehicle> {
 
@@ -29,17 +30,17 @@ public class Workshop <T extends MotorVehicle> {
 
 
     }
-/* TEST
+/* TEST */
 class Main {
     public static void main(String[] args) {
-        Workshop<Car> carWorkshop = new Workshop<>(10, Volvo240.class, Saab95.class);{
+        Workshop<Car> carWorkshop = new Workshop<>(10, Saab95.class);{
         Volvo240 aVolvo = new Volvo240();
         Saab95 aSaab95 = new Saab95();
-        Truck aTruck = new Truck(2,black,100,"BIG TRUCK");
+        Truck aTruck = new Truck(2, Color.black,100,"BIG TRUCK");
 
         carWorkshop.vehicleEntry(aVolvo);
         carWorkshop.vehicleEntry(aTruck);
-        }*/
+        }
     }}
 
 
