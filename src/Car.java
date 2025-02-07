@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Car extends MotorViechle{
+public class Car extends MotorVehicle {
     private boolean carLoaded;
 
 
