@@ -25,12 +25,13 @@ public class Workshop <T extends MotorVehicle> {
         return true;}
 
     public void vehicleExit(T vehicle){
-        vehiclesInRepair.remove(vehicle);    // do we need to know that it is the same instance of the class??
+        vehiclesInRepair.remove(vehicle);    // Will remove the same reference object of vehicle.
     }
 
 
     }
 /* TEST */
+/*
 class Main {
     public static void main(String[] args) {
         Workshop<Car> carWorkshop = new Workshop<>(10, Saab95.class);{
@@ -42,5 +43,8 @@ class Main {
         carWorkshop.vehicleEntry(aTruck);
         }
     }}
+*/
+
+/* TEST */
 
 
