@@ -98,17 +98,17 @@ class Volvo240Test {
         Volvo240 volvo = new Volvo240();
         // Default dirction north
         volvo.startEngine();
-        double oldY = volvo.xAndY.y;
+        double oldY = volvo.getCoordinates().y;
         double newY = oldY + volvo.getCurrentSpeed();
         volvo.move();
-        Assertions.assertEquals(newY, volvo.xAndY.y);
+        Assertions.assertEquals(newY, volvo.getCoordinates().y);
 
         // Change direction to east
         volvo.turnRight();
-        double oldX = volvo.xAndY.x;
+        double oldX = volvo.getCoordinates().x;
         double newX = oldX + volvo.getCurrentSpeed();
         volvo.move();
-        Assertions.assertEquals(newX, volvo.xAndY.x);
+        Assertions.assertEquals(newX, volvo.getCoordinates().x);
 
     }
 

@@ -8,7 +8,7 @@ public abstract class MotorVehicle implements Movable {
     private double currentSpeed; // The current speed of the car
     private Color color; // Color of the car
     private String modelName; // The car model name
-    public Point2D.Double xAndY;
+    private Point2D.Double xAndY;
     private Direction direction;
 
     public MotorVehicle(int nrDoors, Color color, double enginePower, String modelName) {
@@ -49,6 +49,15 @@ public abstract class MotorVehicle implements Movable {
 
     public void stopEngine(){
         currentSpeed = 0;
+    }
+
+    public Point2D.Double getCoordinates() {
+        return this.xAndY;
+    }
+
+    public void setCoordinates(Double x, Double y) {
+        this.xAndY.x = x;
+        this.xAndY.y = y;
     }
 
     public void gas(double amount){

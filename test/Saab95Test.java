@@ -104,17 +104,17 @@ class Saab95Test {
         Saab95 saab = new Saab95();
         // Default dirction north
         saab.startEngine();
-        double oldY = saab.xAndY.y;
+        double oldY = saab.getCoordinates().y;
         double newY = oldY + saab.getCurrentSpeed();
         saab.move();
-        Assertions.assertEquals(newY, saab.xAndY.y);
+        Assertions.assertEquals(newY, saab.getCoordinates().y);
 
         // Change direction to east
         saab.turnRight();
-        double oldX = saab.xAndY.x;
+        double oldX = saab.getCoordinates().x;
         double newX = oldX + saab.getCurrentSpeed();
         saab.move();
-        Assertions.assertEquals(newX, saab.xAndY.x);
+        Assertions.assertEquals(newX, saab.getCoordinates().x);
 
     }
 
