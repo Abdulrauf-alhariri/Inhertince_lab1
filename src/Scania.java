@@ -7,7 +7,7 @@ public class Scania extends Truck {
         super(2,Color.black,300, "Scania");
         this.angle = 0;
     }
-
+    //Separat klass för flaket?
     public void flatBedRaise(double amount){
         double newAngle = this.angle + amount;
 
@@ -19,12 +19,12 @@ public class Scania extends Truck {
     }
 
     public void flatBedLower(double amount){
-        double newAngel = this.angle - amount;
+        double newAngle = this.angle - amount;
 
-        if (newAngel < 0){
+        if (newAngle < 0){
             this.angle = 0;
         } else {
-            this.angle = newAngel;
+            this.angle = newAngle;
         }
     }
 
@@ -43,7 +43,7 @@ public class Scania extends Truck {
     }
 
     @Override
-    public double speedFactor() {
+    protected double speedFactor() {
         if(this.angle == 0) {
         return super.speedFactor();}
 

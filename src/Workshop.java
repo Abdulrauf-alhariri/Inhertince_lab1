@@ -46,7 +46,7 @@ public class Workshop <T extends MotorVehicle> {
 /*
 class Main {
     public static void main(String[] args) {
-        Workshop<Car> carWorkshop = new Workshop<>(10, Saab95.class);{
+        Workshop<Car> carWorkshop = new Workshop<>(10, Saab95.class, volco240.class);{
         Volvo240 aVolvo = new Volvo240();
         Saab95 aSaab95 = new Saab95();
         Truck aTruck = new Truck(2, Color.black,100,"BIG TRUCK");
