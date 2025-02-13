@@ -17,7 +17,7 @@ public abstract class MotorVehicle implements Movable {
         this.enginePower = enginePower;
         this.modelName = modelName;
         this.xAndY = new Point2D.Double(0,0);
-        this.direction = Direction.NORTH;
+        this.direction = Direction.EAST;
     }
 
     public int getNrDoors(){

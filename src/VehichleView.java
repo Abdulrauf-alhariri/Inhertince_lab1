@@ -13,16 +13,21 @@ import java.awt.event.ActionListener;
  * TODO: Write more actionListeners and wire the rest of the buttons
  **/
 
-public class CarView extends JFrame{
-    private static final int X = 800;
-    private static final int Y = 800;
+public class VehichleView extends JFrame{
+    private static final int X = 700;
+    private static final int Y = 700;
 
     // The controller member
-    CarController carC;
+    VehichleController carC;
 
     DrawPanel drawPanel = new DrawPanel(X, Y-240);
 
     JPanel controlPanel = new JPanel();
+
+    JSpinner brakeSpinner = new JSpinner();
+    int brakeAmount = 0;
+    JLabel brakeLabel = new JLabel("Amount of brake");
+    JPanel brakePanel = new JPanel();
 
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
@@ -40,7 +45,7 @@ public class CarView extends JFrame{
     JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public CarView(String framename, CarController cc){
+    public VehichleView(String framename, VehichleController cc){
         this.carC = cc;
         initComponents(framename);
     }
@@ -57,12 +62,17 @@ public class CarView extends JFrame{
 
 
 
-        SpinnerModel spinnerModel =
+        SpinnerModel gasSpinnerModel =
                 new SpinnerNumberModel(0, //initial value
                         0, //min
                         100, //max
                         1);//step
-        gasSpinner = new JSpinner(spinnerModel);
+        SpinnerModel brakeSpinnerModel =
+                new SpinnerNumberModel(0, //initial value
+                        0, //min
+                        100, //max
+                        1);//step
+        gasSpinner = new JSpinner(gasSpinnerModel);
         gasSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 gasAmount = (int) ((JSpinner)e.getSource()).getValue();
@@ -72,6 +82,18 @@ public class CarView extends JFrame{
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
+
+        // Creating the brak spinner
+        brakeSpinner = new JSpinner(brakeSpinnerModel);
+        brakeSpinner.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                brakeAmount = (int) ((JSpinner)e.getSource()).getValue();
+            }
+        });
+
+        brakePanel.add(brakeSpinner, BorderLayout.PAGE_END);
+        brakePanel.add(brakeLabel, BorderLayout.PAGE_START);
+        this.add(brakePanel);
 
         this.add(gasPanel);
 
@@ -108,6 +130,12 @@ public class CarView extends JFrame{
             }
         });
 
+        brakeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.brake(gasAmount);
+            }
+        });
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();
 
