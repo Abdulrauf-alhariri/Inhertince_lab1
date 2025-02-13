@@ -23,9 +23,10 @@ public abstract class MotorVehicle implements Movable {
     public int getNrDoors(){
         return nrDoors;
     }
-    public double getEnginePower(){
+
+    protected double getEnginePower(){
         return enginePower;
-    }
+    } //Private?
 
     public void setCurrentSpeed(double speed) {currentSpeed = speed;}
 
@@ -88,7 +89,7 @@ public abstract class MotorVehicle implements Movable {
 
     }
 
-    public double speedFactor(){
+    protected double speedFactor(){
         return getEnginePower() * 0.01;
     }
 
