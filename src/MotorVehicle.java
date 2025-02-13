@@ -132,4 +132,8 @@ public abstract class MotorVehicle implements Movable {
             this.direction = Direction.SOUTH;
         }
     }
+    public void invertDirection(){
+        this.turnLeft();
+        this.turnLeft();
+    }
 }

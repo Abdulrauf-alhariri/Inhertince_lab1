@@ -1,8 +1,6 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.nio.Buffer;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -25,20 +23,32 @@ public class DrawPanel extends JPanel{
     BufferedImage scaniaImage;
     Point scaniaPoint = new Point();
 
+    Point worldSize = new Point();
+
     // TODO: Make this general for all cars
-    void moveit(int x, int y){
-        volvoPoint.x = x;
-        volvoPoint.y = y;
+    void moveit(int x, int y, MotorVehicle car){
+        if (car instanceof Volvo240) {
+            volvoPoint.x = x;
+            volvoPoint.y = y;
+        }
 
-        saabPoint.x = x;
-        saabPoint.y = y + 100;
+        if (car instanceof Saab95) {
+            saabPoint.x = x;
+            saabPoint.y = y + 100;
+        }
 
-        scaniaPoint.x = x;
-        scaniaPoint.y = y + 200;
+        if(car instanceof Scania) {
+            scaniaPoint.x = x;
+            scaniaPoint.y = y + 200;
+        }
     }
 
     // Initializes the panel and reads the images
     public DrawPanel(int x, int y) {
+        // We save the dimiontions in the variable worldSize
+        this.worldSize.x = x;
+        this.worldSize.y = y;
+
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);

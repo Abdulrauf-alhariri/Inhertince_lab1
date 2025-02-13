@@ -49,7 +49,14 @@ public class VehichleController {
                 vehicle.move();
                 int x = (int) Math.round(vehicle.getCoordinates().x);
                 int y = (int) Math.round(vehicle.getCoordinates().y);
-                frame.drawPanel.moveit(x, y);
+
+                if(!(0 <= x && x < frame.drawPanel.worldSize.x) ||
+                        !(0 <= y && y < frame.drawPanel.worldSize.y)){
+                    vehicle.invertDirection();
+                }
+
+
+                frame.drawPanel.moveit(x, y, vehicle);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
             }
@@ -70,6 +77,15 @@ public class VehichleController {
         for (MotorVehicle vehicle : vehicles
         ) {
             vehicle.brake(brake);
+        }
+    }
+
+    void turboOn() {
+
+        for(MotorVehicle vehicle : vehicles) {
+            if(vehicle instanceof Saab95) {
+                ((Saab95) vehicle).setTurboOn();
+            }
         }
     }
 }
