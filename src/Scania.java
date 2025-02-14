@@ -4,7 +4,7 @@ import java.awt.*;
 public class Scania extends Truck {
     private double angle;
     public Scania() {
-        super(2,Color.black,300, "Scania");
+        super(2,Color.black,130, "Scania");
         this.angle = 0;
     }
     //Separat klass för flaket?

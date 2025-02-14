@@ -14,7 +14,7 @@ public class DrawPanel extends JPanel{
     Point volvoPoint = new Point();
 
     BufferedImage volvoWorkshopImage;
-    Point volvoWorkshopPoint = new Point(300,300);
+    Point volvoWorkshopPoint = new Point(300,0);
 
     // Drawing Saab
     BufferedImage saabImage;

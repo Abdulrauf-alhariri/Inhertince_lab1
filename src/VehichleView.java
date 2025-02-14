@@ -18,7 +18,7 @@ public class VehichleView extends JFrame{
     private static final int Y = 700;
 
     // The controller member
-    VehichleController carC;
+    VehichleController vehichleController;
 
     DrawPanel drawPanel = new DrawPanel(X, Y-240);
 
@@ -45,8 +45,8 @@ public class VehichleView extends JFrame{
     JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public VehichleView(String framename, VehichleController cc){
-        this.carC = cc;
+    public VehichleView(String framename, VehichleController vc){
+        this.vehichleController = vc;
         initComponents(framename);
     }
 
@@ -126,21 +126,34 @@ public class VehichleView extends JFrame{
         gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.gas(gasAmount);
+                vehichleController.gas(gasAmount);
             }
         });
 
         brakeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.brake(gasAmount);
+                vehichleController.brake(gasAmount);
             }
         });
 
         turboOnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.turboOn();
+                vehichleController.turboOn();
+            }
+        });
+
+        stopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vehichleController.stopVehicles();
+            }
+        });
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vehichleController.startVehicles();
             }
         });
         // Make the frame pack all it's components by respecting the sizes if possible.

@@ -43,6 +43,10 @@ public class VehichleController {
     /* Each step the TimerListener moves all the cars in the list and tells the
     * view to update its images. Change this method to your needs.
     * */
+    public Boolean isInRange(MotorVehicle vehicle, Workshop<MotorVehicle> workshop) {
+
+        return false;
+    };
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (MotorVehicle vehicle : vehicles) {
@@ -54,6 +58,8 @@ public class VehichleController {
                         !(0 <= y && y < frame.drawPanel.worldSize.y)){
                     vehicle.invertDirection();
                 }
+
+
 
 
                 frame.drawPanel.moveit(x, y, vehicle);
@@ -86,6 +92,17 @@ public class VehichleController {
             if(vehicle instanceof Saab95) {
                 ((Saab95) vehicle).setTurboOn();
             }
+        }
+    }
+
+    void stopVehicles() {
+        for(MotorVehicle vehicle : vehicles)  {
+            vehicle.stopEngine();
+        }
+    }
+    void startVehicles() {
+        for(MotorVehicle vehicle : vehicles)  {
+            vehicle.startEngine();
         }
     }
 }
