@@ -14,13 +14,13 @@ public class Workshop <T extends MotorVehicle> {
     private Set<Class<? extends T>> servicedVehicles; // Types of vehicles accepted for repair
     protected List<T> vehiclesInRepair; // A list of the vehicles currently in the workshop. List gives option of indexing i.e. first-in, first-out
     private static final Set<MotorVehicle> globalAllVehiclesInRepair = new HashSet<>();//Keeps track which vehicles are already in service.
-    private Point2D.Double location;
+    private Point2D.Double xAndY;
     @SafeVarargs // Allows for any number of Vehicle classes (incl their subclasses) to be added as allowed
     public Workshop(int maximumVehicles, Class<? extends T>...allowedVehicleTypes) {
         this.maximumVehicles = maximumVehicles;
         this.servicedVehicles = new HashSet<>(Arrays.asList(allowedVehicleTypes));
         this.vehiclesInRepair = new ArrayList<>();
-        this.location = new Point2D.Double(0,0);
+        this.xAndY = new Point2D.Double(300,0);
     }
     // If function called by the vehicle; returning a boolean allows it to know if admitted to workshop or not
     protected boolean vehicleEntry(T vehicle){
@@ -33,6 +33,7 @@ public class Workshop <T extends MotorVehicle> {
 
         globalAllVehiclesInRepair.add(vehicle);
         vehiclesInRepair.add(vehicle);
+        vehicle.stopEngine();
         return true;}
 
     protected void vehicleExit(T vehicle){
@@ -43,13 +44,13 @@ public class Workshop <T extends MotorVehicle> {
         servicedVehicles.add(vehicleClass);
     }
 
-    protected Point2D.Double getLocation() {
-        return this.location;
+    protected Point2D.Double getCoordinates() {
+        return this.xAndY;
     }
 
-    protected void setLocation(Double x,Double y) {
-        this.location.x = x;
-        this.location.y = y;
+    protected void setCoordinates(Double x,Double y) {
+        this.xAndY.x = x;
+        this.xAndY.y = y;
     }
 
     }

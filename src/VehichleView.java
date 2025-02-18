@@ -14,8 +14,8 @@ import java.awt.event.ActionListener;
  **/
 
 public class VehichleView extends JFrame{
-    private static final int X = 700;
-    private static final int Y = 700;
+    private static final int X = 800;
+    private static final int Y = 800;
 
     // The controller member
     VehichleController vehichleController;
@@ -24,15 +24,15 @@ public class VehichleView extends JFrame{
 
     JPanel controlPanel = new JPanel();
 
-    JSpinner brakeSpinner = new JSpinner();
-    int brakeAmount = 0;
-    JLabel brakeLabel = new JLabel("Amount of brake");
-    JPanel brakePanel = new JPanel();
-
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
     int gasAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
+
+    JPanel brakePanel = new JPanel();
+    JSpinner brakeSpinner = new JSpinner();
+    int brakeAmount = 0;
+    JLabel brakeLabel = new JLabel("Amount of brake");
 
     JButton gasButton = new JButton("Gas");
     JButton brakeButton = new JButton("Brake");

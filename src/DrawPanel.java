@@ -42,6 +42,11 @@ public class DrawPanel extends JPanel{
             scaniaPoint.y = y + 200;
         }
     }
+    /*void workshopLocation(double x, double y, Workshop<MotorVehicle> W) {
+        if(W instanceof Workshop<Volvo240>) {
+
+        }
+    }*/
 
     // Initializes the panel and reads the images
     public DrawPanel(int x, int y) {
