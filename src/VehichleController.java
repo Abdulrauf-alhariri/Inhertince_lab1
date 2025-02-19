@@ -21,7 +21,8 @@ public class VehichleController {
     // The frame that represents this instance View of the MVC pattern
     VehichleView frame;
     // A list of cars, modify if needed
-     ArrayList<MotorVehicle> vehicles = new ArrayList<>();
+    ArrayList<MotorVehicle> vehicles = new ArrayList<>();
+    ArrayList<Workshop> workshops = new ArrayList<>();
 
     //methods:
 
@@ -32,6 +33,7 @@ public class VehichleController {
         vc.vehicles.add(new Volvo240());
         vc.vehicles.add(new Saab95());
         vc.vehicles.add(new Scania());
+        vc.workshops.add(new Workshop<MotorVehicle>(2, Volvo240.class));
 
         // Start a new view and send a reference of self
         vc.frame = new VehichleView("CarSim 1.0", vc);
@@ -43,6 +45,20 @@ public class VehichleController {
     /* Each step the TimerListener moves all the cars in the list and tells the
     * view to update its images. Change this method to your needs.
     * */
+
+    // Vi borde verkligen ändra ">"-tecknet men det funkar nu. :)
+    public Boolean isTouching(MotorVehicle v, Workshop w) {
+        if (v.getCoordinates().x > w.getCoordinates().x) {
+            return true;
+        }
+        return false;
+    }
+    public Boolean isTouching(MotorVehicle v1, MotorVehicle v2) {
+        if (v1.getCoordinates() == v2.getCoordinates()) {
+            return true;
+        }
+        return false;
+    }
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (MotorVehicle vehicle : vehicles) {
@@ -51,7 +67,7 @@ public class VehichleController {
                 int y = (int) Math.round(vehicle.getCoordinates().y);
 
                 if(!(0 <= x && x < frame.drawPanel.worldSize.x) ||
-                        !(0 <= y && y < frame.drawPanel.worldSize.y)){
+                        !(0 <= y && y < frame.drawPanel.worldSize.y)) {
                     vehicle.invertDirection();
                 }
 
@@ -59,6 +75,16 @@ public class VehichleController {
                 frame.drawPanel.moveit(x, y, vehicle);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
+                loadWorkshops();
+            }
+        }
+    }
+    void loadWorkshops() {
+        for(Workshop w: workshops){
+            for(MotorVehicle v : vehicles) {
+                if(isTouching(v, w)){
+                    w.vehicleEntry(v);
+                }
             }
         }
     }
@@ -86,6 +112,17 @@ public class VehichleController {
             if(vehicle instanceof Saab95) {
                 ((Saab95) vehicle).setTurboOn();
             }
+        }
+    }
+
+    void stopVehicles() {
+        for(MotorVehicle vehicle : vehicles)  {
+            vehicle.stopEngine();
+        }
+    }
+    void startVehicles() {
+        for(MotorVehicle vehicle : vehicles)  {
+            vehicle.startEngine();
         }
     }
 }

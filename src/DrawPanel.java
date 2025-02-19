@@ -14,7 +14,7 @@ public class DrawPanel extends JPanel{
     Point volvoPoint = new Point();
 
     BufferedImage volvoWorkshopImage;
-    Point volvoWorkshopPoint = new Point(300,300);
+    Point volvoWorkshopPoint = new Point(300,0);
 
     // Drawing Saab
     BufferedImage saabImage;
@@ -42,6 +42,11 @@ public class DrawPanel extends JPanel{
             scaniaPoint.y = y + 200;
         }
     }
+    /*void workshopLocation(double x, double y, Workshop<MotorVehicle> W) {
+        if(W instanceof Workshop<Volvo240>) {
+
+        }
+    }*/
 
     // Initializes the panel and reads the images
     public DrawPanel(int x, int y) {

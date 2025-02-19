@@ -14,25 +14,25 @@ import java.awt.event.ActionListener;
  **/
 
 public class VehichleView extends JFrame{
-    private static final int X = 700;
-    private static final int Y = 700;
+    private static final int X = 800;
+    private static final int Y = 800;
 
     // The controller member
-    VehichleController carC;
+    VehichleController vehichleController;
 
     DrawPanel drawPanel = new DrawPanel(X, Y-240);
 
     JPanel controlPanel = new JPanel();
 
-    JSpinner brakeSpinner = new JSpinner();
-    int brakeAmount = 0;
-    JLabel brakeLabel = new JLabel("Amount of brake");
-    JPanel brakePanel = new JPanel();
-
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
     int gasAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
+
+    JPanel brakePanel = new JPanel();
+    JSpinner brakeSpinner = new JSpinner();
+    int brakeAmount = 0;
+    JLabel brakeLabel = new JLabel("Amount of brake");
 
     JButton gasButton = new JButton("Gas");
     JButton brakeButton = new JButton("Brake");
@@ -45,8 +45,8 @@ public class VehichleView extends JFrame{
     JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public VehichleView(String framename, VehichleController cc){
-        this.carC = cc;
+    public VehichleView(String framename, VehichleController vc){
+        this.vehichleController = vc;
         initComponents(framename);
     }
 
@@ -126,21 +126,34 @@ public class VehichleView extends JFrame{
         gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.gas(gasAmount);
+                vehichleController.gas(gasAmount);
             }
         });
 
         brakeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.brake(gasAmount);
+                vehichleController.brake(gasAmount);
             }
         });
 
         turboOnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.turboOn();
+                vehichleController.turboOn();
+            }
+        });
+
+        stopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vehichleController.stopVehicles();
+            }
+        });
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vehichleController.startVehicles();
             }
         });
         // Make the frame pack all it's components by respecting the sizes if possible.
