@@ -87,7 +87,7 @@ public class VehichleView extends JFrame{
         brakeSpinner = new JSpinner(brakeSpinnerModel);
         brakeSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
-                brakeAmount = (int) ((JSpinner)e.getSource()).getValue();
+                brakeAmount = (int) ((JSpinner) e.getSource()).getValue();
             }
         });
 
@@ -98,7 +98,6 @@ public class VehichleView extends JFrame{
         this.add(gasPanel);
 
         controlPanel.setLayout(new GridLayout(2,4));
-
         controlPanel.add(gasButton, 0);
         controlPanel.add(turboOnButton, 1);
         controlPanel.add(liftBedButton, 2);
