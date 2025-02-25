@@ -28,19 +28,16 @@ public class VehichleView extends JFrame{
     JSpinner gasSpinner = new JSpinner();
     int gasAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
-
     JPanel brakePanel = new JPanel();
     JSpinner brakeSpinner = new JSpinner();
     int brakeAmount = 0;
     JLabel brakeLabel = new JLabel("Amount of brake");
-
     JButton gasButton = new JButton("Gas");
     JButton brakeButton = new JButton("Brake");
     JButton turboOnButton = new JButton("Saab Turbo on");
     JButton turboOffButton = new JButton("Saab Turbo off");
     JButton liftBedButton = new JButton("Scania Lift Bed");
     JButton lowerBedButton = new JButton("Lower Lift Bed");
-
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
 
@@ -53,14 +50,10 @@ public class VehichleView extends JFrame{
     // Sets everything in place and fits everything
     // TODO: Take a good look and make sure you understand how these methods and components work
     private void initComponents(String title) {
-
         this.setTitle(title);
         this.setPreferredSize(new Dimension(X,Y));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-
         this.add(drawPanel);
-
-
 
         SpinnerModel gasSpinnerModel =
                 new SpinnerNumberModel(0, //initial value
