@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
  * TODO: Write more actionListeners and wire the rest of the buttons
  **/
 
-public class VehichleView extends JFrame{
+public class VehichleView extends JFrame implements ModelUpdated{
     private static final int X = 800;
     private static final int Y = 800;
 
@@ -159,5 +159,11 @@ public class VehichleView extends JFrame{
         this.setVisible(true);
         // Make sure the frame exits when "x" is pressed
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    @Override
+    public void modelUpdateNotification() {
+        drawPanel.repaint();
+        drawPanel.moveit(x, y, vehicle);
     }
 }
