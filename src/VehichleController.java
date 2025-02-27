@@ -1,42 +1,44 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class VehichleController implements ControllerInterface{
 
     VehichleView frame;
+    private final int delay = 50;
+    private Timer timer = new Timer(delay, new VehichleController.TimerListener());
+    public ModelFacade model;
 
 
-    // Calls the gas method for each car once
-    public void gas(int amount) {
-        double gas = ((double) amount) / 100;
-        for (MotorVehicle vehicle : vehicles
-                ) {
-            vehicle.gas(gas);
+    public VehichleController(ModelFacade model){
+        this.timer.start();
+        this.model = model;
+    }
+
+    private class TimerListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            model.ticker();
         }
+    }
+
+    public void gas(int amount) {
+        model.gas(amount);
     }
 
     public void brake(int amount) {
-        double brake = ((double) amount) / 100;
-        for (MotorVehicle vehicle : vehicles
-        ) {
-            vehicle.brake(brake);
-        }
+        model.brake(amount);
     }
 
     public void turboOn() {
-
-        for(MotorVehicle vehicle : vehicles) {
-            if(vehicle instanceof Saab95) {
-                ((Saab95) vehicle).setTurboOn();
-            }
-        }
+        model.turboOn();
     }
 
     public void stopVehicles() {
-        for(MotorVehicle vehicle : vehicles)  {
-            vehicle.stopEngine();
-        }
+        model.stopVehicles();
     }
+
     public void startVehicles() {
-        for(MotorVehicle vehicle : vehicles)  {
-            vehicle.startEngine();
-        }
+        model.startVehicles();
     }
 }
+

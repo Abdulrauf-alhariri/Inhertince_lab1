@@ -23,7 +23,7 @@ public class DrawPanel extends JPanel{
     BufferedImage scaniaImage;
     Point scaniaPoint = new Point();
 
-    Point worldSize = new Point();
+
 
     // TODO: Make this general for all cars
     void moveit(int x, int y, MotorVehicle car){

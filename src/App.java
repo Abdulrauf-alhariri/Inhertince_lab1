@@ -8,7 +8,7 @@ public class App {
 
     public static void main(String[] args) {
         ModelFacade model = new ModelFacade();
-        vc = new VehichleController();
+        vc = new VehichleController(model);
 
         model.vehicles.add(new Volvo240());
         model.vehicles.add(new Saab95());

@@ -162,7 +162,7 @@ public class VehichleView extends JFrame implements ModelUpdated{
     }
 
     @Override
-    public void modelUpdateNotification() {
+    public void modelUpdateNotification(int x, int y) {
         drawPanel.repaint();
         drawPanel.moveit(x, y, vehicle);
     }
