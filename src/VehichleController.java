@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VehichleController implements ControllerInterface{
+public class VehichleController implements ControllerInterface {
 
     VehichleView frame;
     private final int delay = 50;
@@ -11,7 +11,6 @@ public class VehichleController implements ControllerInterface{
 
 
     public VehichleController(ModelFacade model){
-        this.timer.start();
         this.model = model;
     }
 
@@ -19,6 +18,10 @@ public class VehichleController implements ControllerInterface{
         public void actionPerformed(ActionEvent e) {
             model.ticker();
         }
+    }
+
+    public void startTimer() {
+        this.timer.start();
     }
 
     public void gas(int amount) {

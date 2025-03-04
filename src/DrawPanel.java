@@ -1,3 +1,5 @@
+
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -8,7 +10,10 @@ import javax.swing.*;
 
 public class DrawPanel extends JPanel{
 
-    // Just a single image, TODO: Generalize
+    private final int worldSizeX;
+    private final int worldSizeY;
+
+    // Just a single image, TODO Generalize
     BufferedImage volvoImage;
     // To keep track of a single car's position
     Point volvoPoint = new Point();
@@ -51,8 +56,8 @@ public class DrawPanel extends JPanel{
     // Initializes the panel and reads the images
     public DrawPanel(int x, int y) {
         // We save the dimiontions in the variable worldSize
-        this.worldSize.x = x;
-        this.worldSize.y = y;
+        this.worldSizeX = x;
+        this.worldSizeY = y;
 
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));

@@ -5,9 +5,9 @@ import java.util.List;
 public class ModelFacade {
     ArrayList<MotorVehicle> vehicles = new ArrayList<>();
     ArrayList<Workshop> workshops = new ArrayList<>();
-    private List<ModelUpdated> observers;
-    private int worldSizeX = 800;
-    private int worldSizeY = 800;
+    private List<ModelUpdated> observers = new ArrayList<>();
+    private static int worldSizeX = 800;
+    private static int worldSizeY = 800;
 
     // Vi borde verkligen ändra ">"-tecknet men det funkar nu. :)
     public Boolean isTouching(MotorVehicle v, Workshop w) {
@@ -59,16 +59,17 @@ public class ModelFacade {
         observers.remove(u);
     }
 
-    public int getWorldSizeX() {
+    public  int getWorldSizeX() {
         return worldSizeX;
     }
+
     public int getWorldSizeY() {
         return worldSizeY;
     }
 
     private void notifyObservers() {
         for (ModelUpdated object : observers) {
-            object.modelUpdateNotification((int) vehicles.get(0).getCoordinates().x, (int) vehicles.get(0).getCoordinates().y);
+            object.modelUpdateNotification();
         }
     }
 

@@ -5,25 +5,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * This class represents the full view of the MVC pattern of your car simulator.
- * It initializes with being center on the screen and attaching it's controller in it's state.
- * It communicates with the Controller by calling methods of it when an action fires of in
- * each of it's components.
- * TODO: Write more actionListeners and wire the rest of the buttons
- **/
-
 public class VehichleView extends JFrame implements ModelUpdated{
-    private static final int X = 800;
-    private static final int Y = 800;
 
-    // The controller member
+    private int X;
+    private int Y;
+    ModelFacade model;
     VehichleController vehichleController;
-
-    DrawPanel drawPanel = new DrawPanel(X, Y-240);
-
+    DrawPanel drawPanel;
     JPanel controlPanel = new JPanel();
-
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
     int gasAmount = 0;
@@ -42,13 +31,15 @@ public class VehichleView extends JFrame implements ModelUpdated{
     JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public VehichleView(String framename, VehichleController vc){
+    public VehichleView(String framename, VehichleController vc, ModelFacade model){
         this.vehichleController = vc;
+        this.model = model;
+        this.drawPanel = new DrawPanel(this.X, this.Y-240);
         initComponents(framename);
+        this.X = model.getWorldSizeX();
+        this.Y = model.getWorldSizeY();
     }
 
-    // Sets everything in place and fits everything
-    // TODO: Take a good look and make sure you understand how these methods and components work
     private void initComponents(String title) {
         this.setTitle(title);
         this.setPreferredSize(new Dimension(X,Y));
@@ -76,7 +67,7 @@ public class VehichleView extends JFrame implements ModelUpdated{
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
 
-        // Creating the brak spinner
+        // Creating the brake spinner
         brakeSpinner = new JSpinner(brakeSpinnerModel);
         brakeSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
@@ -114,7 +105,6 @@ public class VehichleView extends JFrame implements ModelUpdated{
         this.add(stopButton);
 
         // This actionListener is for the gas button only
-        // TODO: Create more for each component as necessary
         gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -162,8 +152,11 @@ public class VehichleView extends JFrame implements ModelUpdated{
     }
 
     @Override
-    public void modelUpdateNotification(int x, int y) {
-        drawPanel.repaint();
-        drawPanel.moveit(x, y, vehicle);
+    public void modelUpdateNotification() {
+
+        for(MotorVehicle vehicle : model.vehicles) {
+            drawPanel.moveit((int) vehicle.getCoordinates().x, (int) vehicle.getCoordinates().y, vehicle);
+            drawPanel.repaint();
+        }
     }
 }
