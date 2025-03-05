@@ -28,6 +28,8 @@ public abstract class MotorVehicle implements Movable {
         return enginePower;
     } //Private?
 
+    public String getModelName(){ return this.modelName; }
+
     public void setCurrentSpeed(double speed) {currentSpeed = speed;}
 
     public double getCurrentSpeed(){

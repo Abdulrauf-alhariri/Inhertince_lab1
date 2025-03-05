@@ -15,7 +15,7 @@ public class App {
         model.vehicles.add(new Volvo240());
         model.vehicles.add(new Saab95());
         model.vehicles.add(new Scania());
-        model.workshops.add(new Workshop<MotorVehicle>(2, Volvo240.class));
+        model.workshops.add(new Workshop<MotorVehicle>(2,"VolvoWorkshop", Volvo240.class));
 
         // Start a new view and send a reference of self
         view = new VehichleView("CarSim 1.0", vc, model);

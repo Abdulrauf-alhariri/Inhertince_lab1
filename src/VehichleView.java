@@ -34,10 +34,11 @@ public class VehichleView extends JFrame implements ModelUpdated{
     public VehichleView(String framename, VehichleController vc, ModelFacade model){
         this.vehichleController = vc;
         this.model = model;
-        this.drawPanel = new DrawPanel(this.X, this.Y-240);
-        initComponents(framename);
         this.X = model.getWorldSizeX();
         this.Y = model.getWorldSizeY();
+        this.drawPanel = new DrawPanel(this.X, this.Y-240);
+        initComponents(framename);
+
     }
 
     private void initComponents(String title) {
@@ -153,10 +154,13 @@ public class VehichleView extends JFrame implements ModelUpdated{
 
     @Override
     public void modelUpdateNotification() {
-
+        drawPanel.clear();
         for(MotorVehicle vehicle : model.vehicles) {
-            drawPanel.moveit((int) vehicle.getCoordinates().x, (int) vehicle.getCoordinates().y, vehicle);
-            drawPanel.repaint();
+            drawPanel.moveit((int) vehicle.getCoordinates().x, (int) vehicle.getCoordinates().y, vehicle.getModelName());
         }
+        for (Workshop workshop : model.workshops) {
+            drawPanel.moveit((int) workshop.getCoordinates().x, (int) workshop.getCoordinates().y, workshop.getWorkshopName());
+        }
+        drawPanel.repaint();
     }
 }

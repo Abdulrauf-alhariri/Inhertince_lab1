@@ -20,11 +20,11 @@ class WorkshopTest {
 
     @BeforeEach
     void setUp() {
-        saab95OnlyCarWorkshop = new Workshop<Saab95>(10, Saab95.class);
-        carWorkshop = new Workshop<Car>(2, Saab95.class, Volvo240.class);
-        carTransporterWorkshop = new Workshop<>(10, CarTransporter.class);
-        truckWorkshop = new Workshop<>(10, Truck.class);
-        generalVehicleWorkshop = new Workshop<>(3, Saab95.class, Volvo240.class, CarTransporter.class, Truck.class, Car.class);
+        saab95OnlyCarWorkshop = new Workshop<Saab95>(10, "Workshop", Saab95.class);
+        carWorkshop = new Workshop<Car>(2, "Workshop", Saab95.class, Volvo240.class);
+        carTransporterWorkshop = new Workshop<>(10, "Workshop", CarTransporter.class);
+        truckWorkshop = new Workshop<>(10, "Workshop", Truck.class);
+        generalVehicleWorkshop = new Workshop<>(3, "Workshop", Saab95.class, Volvo240.class, CarTransporter.class, Truck.class, Car.class);
 
         volvoA = new Volvo240();
         volvoB = new Volvo240();
