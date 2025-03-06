@@ -4,4 +4,7 @@ public interface ControllerInterface {
     public void turboOn();
     public void stopVehicles();
     public void startVehicles();
+    public void addVehicle();
+    public void removeVehicle();
+    public void unloadWorkshop();
 }

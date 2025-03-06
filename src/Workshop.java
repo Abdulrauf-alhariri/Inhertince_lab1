@@ -38,11 +38,23 @@ public class Workshop <T extends MotorVehicle> {
         globalAllVehiclesInRepair.add(vehicle);
         vehiclesInRepair.add(vehicle);
         vehicle.stopEngine();
+        vehicle.setIsLoaded();
         return true;}
 
     protected void vehicleExit(T vehicle){
         vehiclesInRepair.remove(vehicle);// Will remove the same reference object of vehicle.
         globalAllVehiclesInRepair.remove(vehicle);
+        vehicle.setIsLoaded();
+        System.out.println(vehicle.getIsLoaded());
+        if (vehicle.getDirection() == Direction.NORTH) {
+            vehicle.setCoordinates(vehicle.getCoordinates().x, vehicle.getCoordinates().y - 50);
+        } else if (vehicle.getDirection() == Direction.EAST) {
+            vehicle.setCoordinates(vehicle.getCoordinates().x + 100, vehicle.getCoordinates().y);
+        } else if (vehicle.getDirection() == Direction.SOUTH) {
+            vehicle.setCoordinates(vehicle.getCoordinates().x, vehicle.getCoordinates().y + 50);
+        } else if (vehicle.getDirection() == Direction.WEST) {
+            vehicle.setCoordinates(vehicle.getCoordinates().x - 100, vehicle.getCoordinates().y);
+        }
     }
     protected void addServicedVehicle(Class<? extends T> vehicleClass){
         servicedVehicles.add(vehicleClass);

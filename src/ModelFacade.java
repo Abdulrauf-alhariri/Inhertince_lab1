@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ModelFacade {
     ArrayList<MotorVehicle> vehicles = new ArrayList<>();
@@ -11,7 +12,7 @@ public class ModelFacade {
 
     // Vi borde verkligen ändra ">"-tecknet men det funkar nu. :)
     public Boolean isTouching(MotorVehicle v, Workshop w) {
-        if (v.getCoordinates().x > w.getCoordinates().x) {
+        if (v.getCoordinates().x > w.getCoordinates().x && v.getCoordinates().x < (w.getCoordinates().x + 50)) {
             return true;
         }
         return false;
@@ -33,6 +34,30 @@ public class ModelFacade {
             }
         }
     }
+    void unloadWorkshop() {
+        for (Workshop w : workshops) {
+            for (Object v : w.vehiclesInRepair) {
+                w.vehicleExit((MotorVehicle) v);
+            }
+        }
+    }
+    void addVehicle() {
+        MotorVehicle[] vehicleList = {new Volvo240(), new Saab95(), new Scania()};
+        if (vehicles.size() <= 10) {
+            int randomVehicle = new Random().nextInt(vehicleList.length);
+            double randomX = new Random().nextDouble(500);
+            double randomY = new Random().nextDouble(500);
+            MotorVehicle vehicle = vehicleList[randomVehicle];
+            vehicle.setCoordinates(randomX, randomY);
+            vehicles.add(vehicle);
+        }
+    }
+    void removeVehicle() {
+        if(vehicles.size() > 0) {
+            vehicles.removeLast();
+        }
+    }
+
 
     // DrawPanel ska lyssna på ett interface.
     void ticker() {
@@ -46,8 +71,8 @@ public class ModelFacade {
                 vehicle.invertDirection();
             }
             loadWorkshops();
-            notifyObservers();
         }
+        notifyObservers();
     }
 
 

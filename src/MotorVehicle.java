@@ -10,6 +10,7 @@ public abstract class MotorVehicle implements Movable {
     private String modelName; // The car model name
     private Point2D.Double xAndY;
     private Direction direction;
+    private boolean isLoaded;
 
     public MotorVehicle(int nrDoors, Color color, double enginePower, String modelName) {
         this.nrDoors = nrDoors;
@@ -18,6 +19,7 @@ public abstract class MotorVehicle implements Movable {
         this.modelName = modelName;
         this.xAndY = new Point2D.Double(0,0);
         this.direction = Direction.EAST;
+        this.isLoaded = false;
     }
 
     public int getNrDoors(){
@@ -62,6 +64,11 @@ public abstract class MotorVehicle implements Movable {
         this.xAndY.x = x;
         this.xAndY.y = y;
     }
+    public boolean getIsLoaded() { return isLoaded; }
+
+    public void setIsLoaded() {
+        this.isLoaded = !this.isLoaded;
+    }
 
     public void gas(double amount){
         if(amount > 1) {
@@ -69,7 +76,9 @@ public abstract class MotorVehicle implements Movable {
         } else if (amount < 0) {
             amount = 0;
         }
-        incrementSpeed(amount);
+        if (! this.isLoaded) {
+            incrementSpeed(amount);
+        }
     }
 
     public void brake(double amount){

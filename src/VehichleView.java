@@ -29,6 +29,10 @@ public class VehichleView extends JFrame implements ModelUpdated{
     JButton lowerBedButton = new JButton("Lower Lift Bed");
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
+    JButton removeVehicleButton = new JButton("Remove Vehicle");
+    JButton addVehicleButton = new JButton("Add Vehicle");
+    JButton unloadWorkshopButton = new JButton("Unload Workshop");
+
 
     // Constructor
     public VehichleView(String framename, VehichleController vc, ModelFacade model){
@@ -89,6 +93,9 @@ public class VehichleView extends JFrame implements ModelUpdated{
         controlPanel.add(brakeButton, 3);
         controlPanel.add(turboOffButton, 4);
         controlPanel.add(lowerBedButton, 5);
+        controlPanel.add(addVehicleButton, 6);
+        controlPanel.add(removeVehicleButton, 7);
+        controlPanel.add(unloadWorkshopButton, 8);
         controlPanel.setPreferredSize(new Dimension((X/2)+4, 200));
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
@@ -138,6 +145,18 @@ public class VehichleView extends JFrame implements ModelUpdated{
             public void actionPerformed(ActionEvent e) {
                 vehichleController.startVehicles();
             }
+        });
+        addVehicleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { vehichleController.addVehicle(); }
+        });
+        removeVehicleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { vehichleController.removeVehicle(); }
+        });
+        unloadWorkshopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { vehichleController.unloadWorkshop(); }
         });
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();

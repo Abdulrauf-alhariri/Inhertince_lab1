@@ -43,5 +43,12 @@ public class VehichleController implements ControllerInterface {
     public void startVehicles() {
         model.startVehicles();
     }
+
+    public void addVehicle() { model.addVehicle(); }
+
+    public void removeVehicle() { model.removeVehicle(); }
+
+    public void unloadWorkshop() { model.unloadWorkshop(); }
+
 }
 
