@@ -36,9 +36,12 @@ public class ModelFacade {
     }
     void unloadWorkshop() {
         for (Workshop w : workshops) {
-            for (Object v : w.vehiclesInRepair) {
+
+            for(int i= 0; i  < w.vehiclesInRepair.size(); i++) {
+                Object v = w.vehiclesInRepair.get(i);
                 w.vehicleExit((MotorVehicle) v);
             }
+
         }
     }
     void addVehicle() {
