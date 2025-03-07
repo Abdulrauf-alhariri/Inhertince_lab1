@@ -13,8 +13,15 @@ public class App {
 
         // Skapa en factory för att skapa bilarna. En metod för varje model.
         model.vehicles.add(new Volvo240());
+        
         model.vehicles.add(new Saab95());
+        MotorVehicle saab = model.vehicles.get(model.vehicles.size() - 1);
+        saab.setCoordinates(0.0, 200.0);
+
         model.vehicles.add(new Scania());
+        MotorVehicle scania = model.vehicles.get(model.vehicles.size() - 1);
+        scania.setCoordinates(0.0, 100.0);
+        
         model.workshops.add(new Workshop<MotorVehicle>(2,"VolvoWorkshop", Volvo240.class));
 
         // Start a new view and send a reference of self

@@ -57,7 +57,7 @@ public class ModelFacade {
     }
     void removeVehicle() {
         if(vehicles.size() > 0) {
-            vehicles.removeLast();
+            vehicles.remove(vehicles.size() - 1);
         }
     }
 

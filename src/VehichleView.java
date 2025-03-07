@@ -96,7 +96,7 @@ public class VehichleView extends JFrame implements ModelUpdated{
         controlPanel.add(addVehicleButton, 6);
         controlPanel.add(removeVehicleButton, 7);
         controlPanel.add(unloadWorkshopButton, 8);
-        controlPanel.setPreferredSize(new Dimension((X/2)+4, 200));
+        controlPanel.setPreferredSize(new Dimension((2*X/3)+4, 200));
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
 
