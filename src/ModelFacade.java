@@ -135,4 +135,19 @@ public class ModelFacade {
             vehicle.startEngine();
         }
     }
+    public void lowerBed() {
+        for(MotorVehicle vehicle : vehicles)  {
+            if(vehicle instanceof Scania)  {
+                ((Scania) vehicle).flatBedLower(70);
+            }
+        }
+    }
+
+    public void raiseBed() {
+        for(MotorVehicle vehicle : vehicles)  {
+            if(vehicle instanceof Scania)  {
+                ((Scania) vehicle).flatBedRaise(70);
+            }
+        }
+    }
 }

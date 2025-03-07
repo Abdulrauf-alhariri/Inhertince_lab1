@@ -50,5 +50,9 @@ public class VehichleController implements ControllerInterface {
 
     public void unloadWorkshop() { model.unloadWorkshop(); }
 
+    public void lowerBed() { model.lowerBed(); }
+
+    public void raiseBed() { model.raiseBed(); }
+
 }
 
